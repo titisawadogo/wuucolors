@@ -13,7 +13,8 @@ wuuColors makes it easy to find colors in images and PDFs. Open a file to see it
 - Explore dominant and accent colors in PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG, and PDF files.
 - Browse every exact HEX color with its pixel count, or download the complete list as CSV.
 - Click a pixel to read its HEX, RGB, and HSL values.
-- Select an area to see a focused palette, with the selected region kept visible on the image.
+- Select an area to see a focused palette. On touchscreens, use **Select area** or double tap the image to create a box, then drag it or resize it from a corner. **Clear area** removes it.
+- Open the fixed **Colors** bar on phones and smaller tablets to see image and selected-area colors without scrolling below the image.
 - Pick a color from another visible window with the browser's screen eyedropper on supported desktop browsers. On phones and tablets, import a screenshot instead.
 - Copy colors or download a TXT or PDF summary.
 - Use the interface in English, French, or Spanish on desktop, tablet, or phone.
@@ -38,6 +39,7 @@ Open `http://localhost:8000` in your browser. Choose **Try an example** to explo
 | `dist/styles.css` | Responsive design |
 | `dist/app.js` | File handling, color analysis, selection, and exports |
 | `dist/color-analysis.js` | Full-resolution pixel counting and palette extraction |
+| `dist/selection-geometry.mjs` | Touch selection placement, moving, and resizing |
 | `dist/i18n.js` | English, French, and Spanish text |
 | `dist/pdf.min.mjs`, `dist/pdf.worker.min.mjs` | Local PDF rendering |
 | `dist/heic-to.js` | Local HEIC/HEIF fallback decoder |

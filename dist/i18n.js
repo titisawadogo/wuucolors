@@ -46,7 +46,13 @@ Object.assign(messages.en, {
   reportExactStats: '{count} distinct colors across {pixels} visible pixels. Download CSV for the complete list.',
   reportImagePixels: 'Image scanned at its original {width} × {height} pixel size.',
   reportPdfPixels: 'PDF colors are from the rendered page at {width} × {height} pixels.',
-  colorsCountOne: '1 COLOR', originalImage: ' · ORIGINAL IMAGE'
+  colorsCountOne: '1 COLOR', originalImage: ' · ORIGINAL IMAGE',
+  previewHintTouch: 'Tap for a pixel. Tap Select area or double tap the image for a box.',
+  step2Text: 'Click for a pixel. With touch, tap Select area or double tap the image, then move or resize the box.',
+  editableArea: 'Selected area. Drag to move, or use arrow keys.',
+  resizeNorthwest: 'Resize selected area from top left', resizeNortheast: 'Resize selected area from top right',
+  resizeSouthwest: 'Resize selected area from bottom left', resizeSoutheast: 'Resize selected area from bottom right',
+  imageColors: 'Image colors', selectedAreaColors: 'Selected area colors', viewColors: 'View colors', hideColors: 'Hide colors', closeColors: 'Close colors'
 });
 Object.assign(messages.fr, {
   heroIntro: 'Explorez toutes les couleurs de vos images et PDF, jusqu’au moindre pixel.',
@@ -66,7 +72,13 @@ Object.assign(messages.fr, {
   reportExactStats: '{count} couleurs distinctes sur {pixels} pixels visibles. Téléchargez le CSV pour la liste complète.',
   reportImagePixels: 'Image analysée à sa taille d’origine : {width} × {height} pixels.',
   reportPdfPixels: 'Couleurs du PDF issues de la page rendue à {width} × {height} pixels.',
-  colorsCountOne: '1 COULEUR', originalImage: ' · IMAGE ORIGINALE'
+  colorsCountOne: '1 COULEUR', originalImage: ' · IMAGE ORIGINALE',
+  previewHintTouch: 'Touchez pour un pixel. Touchez Sélectionner une zone ou touchez deux fois l’image pour créer un cadre.',
+  step2Text: 'Cliquez pour un pixel. Sur écran tactile, touchez Sélectionner une zone ou touchez deux fois l’image, puis déplacez ou redimensionnez le cadre.',
+  editableArea: 'Zone sélectionnée. Glissez pour déplacer ou utilisez les flèches.',
+  resizeNorthwest: 'Redimensionner depuis le coin supérieur gauche', resizeNortheast: 'Redimensionner depuis le coin supérieur droit',
+  resizeSouthwest: 'Redimensionner depuis le coin inférieur gauche', resizeSoutheast: 'Redimensionner depuis le coin inférieur droit',
+  imageColors: 'Couleurs de l’image', selectedAreaColors: 'Couleurs de la zone', viewColors: 'Voir les couleurs', hideColors: 'Masquer les couleurs', closeColors: 'Fermer les couleurs'
 });
 Object.assign(messages.es, {
   heroIntro: 'Explora todos los colores de imágenes y PDF, hasta cada píxel.',
@@ -86,7 +98,13 @@ Object.assign(messages.es, {
   reportExactStats: '{count} colores distintos en {pixels} píxeles visibles. Descarga el CSV para la lista completa.',
   reportImagePixels: 'Imagen analizada a su tamaño original de {width} × {height} píxeles.',
   reportPdfPixels: 'Los colores del PDF proceden de la página renderizada a {width} × {height} píxeles.',
-  colorsCountOne: '1 COLOR', originalImage: ' · IMAGEN ORIGINAL'
+  colorsCountOne: '1 COLOR', originalImage: ' · IMAGEN ORIGINAL',
+  previewHintTouch: 'Toca para un píxel. Pulsa Seleccionar área o toca dos veces la imagen para crear un recuadro.',
+  step2Text: 'Pulsa para ver un píxel. En pantalla táctil, pulsa Seleccionar área o toca dos veces la imagen; después mueve o cambia el tamaño del recuadro.',
+  editableArea: 'Área seleccionada. Arrastra para mover o usa las flechas.',
+  resizeNorthwest: 'Cambiar tamaño desde la esquina superior izquierda', resizeNortheast: 'Cambiar tamaño desde la esquina superior derecha',
+  resizeSouthwest: 'Cambiar tamaño desde la esquina inferior izquierda', resizeSoutheast: 'Cambiar tamaño desde la esquina inferior derecha',
+  imageColors: 'Colores de la imagen', selectedAreaColors: 'Colores del área', viewColors: 'Ver colores', hideColors: 'Ocultar colores', closeColors: 'Cerrar colores'
 });
 
 const supported = new Set(Object.keys(messages));
