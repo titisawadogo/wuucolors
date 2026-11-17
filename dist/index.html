@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f5f9">
+  <meta name="description" content="Inspect exact pixel colors and palettes in images and PDFs. Your files stay in your browser.">
+  <title>wuuColors — Color, revealed</title>
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="wuuColors home"><span class="brand-word">wuu<span>Colors</span></span></a>
+      <div class="topbar-right">
+        <button id="helpButton" class="plain-button" type="button"><span data-i18n="howItWorks">How it works</span></button>
+        <select id="languageSelect" class="language-select" data-i18n-aria="language" aria-label="Language">
+          <option value="en">EN</option><option value="fr">FR</option><option value="es">ES</option>
+        </select>
+      </div>
+    </header>
+    <main id="top">
+      <div class="intro-row">
+        <div><div class="eyebrow" data-i18n="eyebrow">A CREATIVE COLOR TOOL</div><h1><span data-i18n="heroFirst">See the colors</span><br><em data-i18n="heroSecond">behind the design.</em></h1></div>
+        <p data-i18n="heroIntro">Explore colors in images and PDFs, down to individual pixels. You can also pick colors anywhere on your screen.</p>
+      </div>
+      <section class="workspace" data-i18n-aria="colorInspector" aria-label="Color inspector">
+        <div class="workspace-bar">
+          <div class="workspace-title"><span data-i18n="workspace">YOUR WORKSPACE</span><span id="fileStatus" class="file-status" data-i18n="readyForFile">READY FOR A FILE</span></div>
+          <div class="workspace-actions"><button id="demoButton" type="button" class="text-button"><span data-i18n="tryExample">Try an example</span></button><label class="upload-button" for="fileInput"><span data-i18n="openFile">Open a file</span></label><input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/avif,image/gif,image/bmp,image/svg+xml,application/pdf,.pdf" hidden></div>
+        </div>
+        <div class="workspace-body">
+          <div class="stage-col">
+            <div id="previewToolbar" class="preview-toolbar" hidden>
+              <span id="previewFileName" class="preview-file-name"></span>
+              <div class="preview-toolbar-actions"><button id="selectAreaButton" class="preview-select-button" type="button"><span data-i18n="selectAreaAction">Select area</span></button><button id="removeFileButton" class="remove-file-button" type="button" data-i18n-aria="removeFile" aria-label="Remove file">×</button></div>
+            </div>
+            <div id="dropzone" class="stage empty" tabindex="0" role="button" data-i18n-aria="uploadLabel" aria-label="Upload an image or PDF">
+              <div id="emptyState" class="empty-state">
+                <div class="empty-art" aria-hidden="true"><div class="art-sheet art-back"></div><div class="art-sheet art-front"><div class="art-disc"></div><div class="art-line"></div><div class="art-line short"></div></div></div>
+                <h2 data-i18n="dropTitle">Drop in a design.</h2><p><span data-i18n="supportedTypes">PNG, JPG, WEBP, AVIF, GIF, BMP, SVG or PDF.</span><br><span data-i18n="localAnalysis">Up to 25 MB. Analyzed in this browser.</span></p>
+                <span class="empty-action"><span data-i18n="chooseFile">CHOOSE A FILE</span></span>
+                <button id="mobileDemoButton" class="mobile-demo-button" type="button"><span data-i18n="tryExample">Try an example</span></button>
+              </div>
+              <div id="canvasWrap" class="canvas-wrap" hidden><canvas id="sourceCanvas" data-i18n-aria="imagePreview" aria-label="Uploaded design preview"></canvas><div id="selectionBox" class="selection-box" hidden></div><div id="tapMarker" class="tap-marker" hidden></div><div id="loupe" class="loupe" hidden><canvas id="loupeCanvas" width="88" height="88"></canvas><span id="loupeLabel"></span></div></div>
+            </div>
+            <div class="area-section" id="areaSection" hidden><div class="result-section-head"><span data-i18n="areaResultsTitle">SELECTED AREA</span></div><div id="areaResults" hidden><div id="areaCaption" class="area-caption"></div><div id="areaPalette" class="area-palette"></div></div></div>
+            <div class="stage-footer"><div class="stage-hint" id="stageHint"><span id="stageHintText" data-i18n="localPrivacy">Your file never leaves this page.</span></div><div class="stage-controls" id="stageControls" hidden><button id="pagePrev" class="icon-button" type="button" data-i18n-aria="previousPage" aria-label="Previous PDF page">←</button><span id="pageIndicator">PAGE 1 / 1</span><button id="pageNext" class="icon-button" type="button" data-i18n-aria="nextPage" aria-label="Next PDF page">→</button></div><span id="dimensions" data-i18n="dimensionsIdle">IMAGE · PDF</span></div>
+          </div>
+          <aside class="inspector" data-i18n-aria="colorInspector" aria-label="Color findings">
+            <div class="inspector-head"><span data-i18n="colorInspector">COLOR INSPECTOR</span><span id="inspectorState" data-i18n="noFileLoaded">NO FILE LOADED</span></div>
+            <div class="panel" id="colorsPanel"><div class="panel-lead"><div class="panel-kicker" data-i18n="colorAnalysis">COLOR ANALYSIS</div><h3 data-i18n="panelTitle">Every shade has a story.</h3><p data-i18n="panelLead">Explore palettes and exact pixel colors in images and PDFs. Pick from your screen too.</p></div>
+              <div class="screen-section"><div class="result-section-head"><span data-i18n="screenEyedropper">SCREEN EYEDROPPER</span><span data-i18n="noUploadNeeded">NO UPLOAD NEEDED</span></div><button id="screenPickButton" class="screen-pick-button" type="button"><span class="screen-pick-icon" aria-hidden="true"><svg viewBox="0 0 24 24" focusable="false"><path d="M21.16 2.84a3 3 0 0 0-4.24 0L14.8 4.96l-1.06-1.06a1 1 0 0 0-1.41 1.41l1.06 1.06-9.2 9.2a3 3 0 0 0-.82 1.48L2 22l4.95-1.37a3 3 0 0 0 1.48-.82l9.2-9.2 1.06 1.06a1 1 0 0 0 1.41-1.41l-1.06-1.06 2.12-2.12a3 3 0 0 0 0-4.24ZM6.9 18.3l-2.03.56.56-2.03 9.37-9.37 1.47 1.47L6.9 18.3Z"/></svg></span><span class="screen-pick-label" data-i18n="pickFromScreen">Pick from screen</span></button><p id="screenSupport" class="field-help" data-i18n="screenSupport">Choose one visible color from any window. Repeat to build a palette.</p><div id="screenColorsBlock" hidden><div class="screen-colors-head"><span><span data-i18n="savedScreenColors">SAVED SCREEN COLORS</span> <small id="screenColorCount"></small></span><button id="clearScreenColors" type="button" data-i18n="clearAll">CLEAR ALL</button></div><div id="screenColorList" class="screen-color-list"></div></div></div>
+              <div id="colorEmpty" class="empty-result"><p data-i18n="paletteEmpty">Your palette and pixel details will appear here.</p></div>
+              <div id="colorResults" hidden>
+                <div class="result-section-head"><span><span data-i18n="dominantPalette">DOMINANT PALETTE</span> <small id="paletteCount"></small></span><button id="copyPalette" type="button" class="tiny-link"><span data-i18n="copyAll">COPY ALL</span></button></div><div id="paletteList" class="palette-list"></div>
+                <div class="pixel-section"><div class="result-section-head"><span data-i18n="pixelInspector">PIXEL INSPECTOR</span><span data-i18n="clickDesign">CLICK DESIGN</span></div><div class="pixel-readout"><div id="pixelSwatch" class="pixel-swatch"></div><div class="pixel-data"><strong id="pixelHex">—</strong><span id="pixelCoord">x — · y —</span></div><button id="copyPixel" class="copy-icon" type="button" data-i18n-aria="copyPixel" aria-label="Copy pixel color"><span data-i18n="copy">COPY</span></button></div><div class="color-formats"><div><span>RGB</span><strong id="pixelRGB">—</strong></div><div><span>HSL</span><strong id="pixelHSL">—</strong></div></div></div>
+              </div>
+            </div>
+            <div class="inspector-bottom"><span data-i18n="exportFindings">EXPORT FINDINGS</span><div><button id="downloadTxt" type="button" disabled>TXT</button><button id="downloadPdf" type="button" disabled>PDF</button></div></div>
+          </aside>
+        </div>
+      </section>
+      <footer class="site-footer"><p>© <span id="footerYear">2026</span> wuuColors. <span data-i18n="rights">All rights reserved.</span></p></footer>
+    </main>
+  </div>
+  <dialog id="helpDialog"><div class="dialog-head"><span data-i18n="helpShort">THE SHORT VERSION</span><button id="closeHelp" type="button" data-i18n-aria="closeHelp" aria-label="Close help">✕</button></div><h2 data-i18n="helpTitle">Look closer.</h2><ol><li><strong data-i18n="step1Title">Open an image or PDF.</strong><span data-i18n="step1Text">Choose a file to see its palette. Files stay in your browser.</span></li><li><strong data-i18n="step2Title">Inspect a pixel or area.</strong><span data-i18n="step2Text">Click or tap for a pixel. Drag over a detail, or use Select area and choose two corners.</span></li><li><strong data-i18n="step3Title">Pick from your screen.</strong><span data-i18n="step3Text">In supporting browsers, use the eyedropper to choose a color from another visible window. Press Escape to cancel.</span></li><li><strong data-i18n="step4Title">Keep your findings.</strong><span data-i18n="step4Text">Download a TXT or PDF summary.</span></li></ol><button id="helpStart" class="dialog-action" type="button"><span data-i18n="startExploring">START EXPLORING</span></button></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script type="module" src="./app.js"></script>
+</body>
+</html>
