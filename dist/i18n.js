@@ -31,7 +31,7 @@ const messages = {
 Object.assign(messages.en, {
   heroIntro: 'Explore every color in images and PDFs, down to individual pixels.',
   panelLead: 'Explore palettes and exact pixel colors in images and PDFs.',
-  screenFallback: 'Want a color from another app? Open a screenshot here.',
+  screenFallback: 'See a color you like? Take a screenshot and upload it here.',
   dropTitle: 'Add an image or PDF.',
   step4Text: 'Download a TXT or PDF summary, or a CSV of every exact color.',
   supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG or PDF.',
@@ -51,7 +51,7 @@ Object.assign(messages.en, {
 Object.assign(messages.fr, {
   heroIntro: 'Explorez toutes les couleurs de vos images et PDF, jusqu’au moindre pixel.',
   panelLead: 'Explorez les palettes et les couleurs exactes des pixels de vos images et PDF.',
-  screenFallback: 'Une couleur d’une autre application ? Ouvrez une capture d’écran ici.',
+  screenFallback: 'Une couleur vous plaît ? Prenez une capture d’écran et importez-la ici.',
   dropTitle: 'Ajoutez une image ou un PDF.',
   step4Text: 'Téléchargez un résumé TXT ou PDF, ou un CSV de toutes les couleurs exactes.',
   supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG ou PDF.',
@@ -71,7 +71,7 @@ Object.assign(messages.fr, {
 Object.assign(messages.es, {
   heroIntro: 'Explora todos los colores de imágenes y PDF, hasta cada píxel.',
   panelLead: 'Explora paletas y colores exactos de píxeles en imágenes y PDF.',
-  screenFallback: '¿Quieres un color de otra aplicación? Abre aquí una captura de pantalla.',
+  screenFallback: '¿Ves un color que te gusta? Haz una captura de pantalla y súbela aquí.',
   dropTitle: 'Añade una imagen o un PDF.',
   step4Text: 'Descarga un resumen TXT o PDF, o un CSV con todos los colores exactos.',
   supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG o PDF.',
