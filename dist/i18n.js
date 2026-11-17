@@ -28,6 +28,67 @@ const messages = {
   }
 };
 
+Object.assign(messages.en, {
+  heroIntro: 'Explore every color in images and PDFs, down to individual pixels.',
+  panelLead: 'Explore palettes and exact pixel colors in images and PDFs.',
+  screenFallback: 'Want a color from another app? Open a screenshot here.',
+  dropTitle: 'Add an image or PDF.',
+  step4Text: 'Download a TXT or PDF summary, or a CSV of every exact color.',
+  supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG or PDF.',
+  accentColors: 'ACCENT COLORS', accentHelp: 'Small colors found beyond the main palette.',
+  exactColors: 'EXACT COLORS', exactHelp: 'Every visible decoded pixel is counted. PDFs use the rendered page. Browse by HEX or export the complete list.',
+  filterHex: 'Filter by HEX', previous: 'Previous', next: 'Next',
+  downloadCsv: 'Download all colors (CSV)', csvDownloaded: 'Complete color list downloaded',
+  scanning: 'Scanning every pixel · {percent}%', scanned: '{count} exact colors across {pixels} visible pixels',
+  exactPending: 'Scanning pixels…', exactEmpty: 'No matching colors', exactRange: '{from}–{to}',
+  openingHeic: 'Opening HEIC on this device…', scanFailed: 'This device could not finish the full scan. The preview is still available.',
+  reportAccent: 'ACCENT COLORS', reportExact: 'EXACT SCAN',
+  reportExactStats: '{count} distinct colors across {pixels} visible pixels. Download CSV for the complete list.',
+  reportImagePixels: 'Image scanned at its original {width} × {height} pixel size.',
+  reportPdfPixels: 'PDF colors are from the rendered page at {width} × {height} pixels.',
+  colorsCountOne: '1 COLOR', originalImage: ' · ORIGINAL IMAGE'
+});
+Object.assign(messages.fr, {
+  heroIntro: 'Explorez toutes les couleurs de vos images et PDF, jusqu’au moindre pixel.',
+  panelLead: 'Explorez les palettes et les couleurs exactes des pixels de vos images et PDF.',
+  screenFallback: 'Une couleur d’une autre application ? Ouvrez une capture d’écran ici.',
+  dropTitle: 'Ajoutez une image ou un PDF.',
+  step4Text: 'Téléchargez un résumé TXT ou PDF, ou un CSV de toutes les couleurs exactes.',
+  supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG ou PDF.',
+  accentColors: 'COULEURS D’ACCENT', accentHelp: 'De petites couleurs au-delà de la palette principale.',
+  exactColors: 'COULEURS EXACTES', exactHelp: 'Chaque pixel visible décodé est compté. Les PDF utilisent la page affichée. Parcourez les codes HEX ou exportez la liste complète.',
+  filterHex: 'Filtrer par HEX', previous: 'Précédent', next: 'Suivant',
+  downloadCsv: 'Télécharger toutes les couleurs (CSV)', csvDownloaded: 'Liste complète des couleurs téléchargée',
+  scanning: 'Analyse de chaque pixel · {percent} %', scanned: '{count} couleurs exactes sur {pixels} pixels visibles',
+  exactPending: 'Analyse des pixels…', exactEmpty: 'Aucune couleur correspondante', exactRange: '{from}–{to}',
+  openingHeic: 'Ouverture du HEIC sur cet appareil…', scanFailed: 'Cet appareil n’a pas pu terminer l’analyse complète. L’aperçu reste disponible.',
+  reportAccent: 'COULEURS D’ACCENT', reportExact: 'ANALYSE EXACTE',
+  reportExactStats: '{count} couleurs distinctes sur {pixels} pixels visibles. Téléchargez le CSV pour la liste complète.',
+  reportImagePixels: 'Image analysée à sa taille d’origine : {width} × {height} pixels.',
+  reportPdfPixels: 'Couleurs du PDF issues de la page rendue à {width} × {height} pixels.',
+  colorsCountOne: '1 COULEUR', originalImage: ' · IMAGE ORIGINALE'
+});
+Object.assign(messages.es, {
+  heroIntro: 'Explora todos los colores de imágenes y PDF, hasta cada píxel.',
+  panelLead: 'Explora paletas y colores exactos de píxeles en imágenes y PDF.',
+  screenFallback: '¿Quieres un color de otra aplicación? Abre aquí una captura de pantalla.',
+  dropTitle: 'Añade una imagen o un PDF.',
+  step4Text: 'Descarga un resumen TXT o PDF, o un CSV con todos los colores exactos.',
+  supportedTypes: 'PNG, JPG, HEIC, HEIF, WEBP, AVIF, GIF, BMP, SVG o PDF.',
+  accentColors: 'COLORES DE ACENTO', accentHelp: 'Colores pequeños fuera de la paleta principal.',
+  exactColors: 'COLORES EXACTOS', exactHelp: 'Se cuenta cada píxel visible decodificado. Los PDF usan la página renderizada. Explora por HEX o exporta la lista completa.',
+  filterHex: 'Filtrar por HEX', previous: 'Anterior', next: 'Siguiente',
+  downloadCsv: 'Descargar todos los colores (CSV)', csvDownloaded: 'Lista completa de colores descargada',
+  scanning: 'Analizando cada píxel · {percent} %', scanned: '{count} colores exactos en {pixels} píxeles visibles',
+  exactPending: 'Analizando píxeles…', exactEmpty: 'No hay colores coincidentes', exactRange: '{from}–{to}',
+  openingHeic: 'Abriendo HEIC en este dispositivo…', scanFailed: 'Este dispositivo no pudo terminar el análisis completo. La vista previa sigue disponible.',
+  reportAccent: 'COLORES DE ACENTO', reportExact: 'ANÁLISIS EXACTO',
+  reportExactStats: '{count} colores distintos en {pixels} píxeles visibles. Descarga el CSV para la lista completa.',
+  reportImagePixels: 'Imagen analizada a su tamaño original de {width} × {height} píxeles.',
+  reportPdfPixels: 'Los colores del PDF proceden de la página renderizada a {width} × {height} píxeles.',
+  colorsCountOne: '1 COLOR', originalImage: ' · IMAGEN ORIGINAL'
+});
+
 const supported = new Set(Object.keys(messages));
 function initialLanguage() {
   try { const saved = localStorage.getItem('wuucolors-language'); if (supported.has(saved)) return saved; } catch {}
