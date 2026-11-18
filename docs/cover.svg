@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 320" role="img" aria-labelledby="title description">
+  <title id="title">wuuColors</title>
+  <desc id="description">See the colors behind the design. A browser-local color inspector for images and PDFs.</desc>
+  <rect width="1200" height="320" rx="18" fill="#291638"/>
+  <rect x="48" y="69" width="112" height="112" rx="24" fill="#f8f5fb"/>
+  <path d="M72 100 88 151 104 117 120 151 136 100" fill="none" stroke="#5d2d91" stroke-width="11" stroke-linecap="round" stroke-linejoin="round"/>
+  <text x="194" y="137" fill="#fff" font-family="Arial, Helvetica, sans-serif" font-size="67" font-weight="700" letter-spacing="-4">wuuColors</text>
+  <text x="198" y="188" fill="#ede2f5" font-family="Arial, Helvetica, sans-serif" font-size="25" font-weight="400">See the colors behind the design.</text>
+  <text x="198" y="239" fill="#bfa9ce" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700" letter-spacing="2.5">IMAGE · PDF · PIXEL</text>
+  <rect x="835" y="69" width="58" height="182" rx="8" fill="#faf7f3"/>
+  <rect x="902" y="69" width="58" height="182" rx="8" fill="#5d2d91"/>
+  <rect x="969" y="69" width="58" height="182" rx="8" fill="#b897d0"/>
+  <rect x="1036" y="69" width="58" height="182" rx="8" fill="#e4a786"/>
+  <rect x="1103" y="69" width="58" height="182" rx="8" fill="#7a53a3"/>
+  <path d="M835 266h326" stroke="#715d80" stroke-width="1"/>
+</svg>
