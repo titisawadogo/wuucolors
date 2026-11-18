@@ -9,9 +9,11 @@
 </p>
 
 <p align="center">
-  <a href="#preview">Preview</a> ·
-  <a href="#features">Features</a> ·
-  <a href="#run-locally">Run locally</a>
+  <strong>Website</strong> · <code>wuucolors.com</code> (planned)
+  <br>
+  <strong>Built with</strong> · HTML · CSS · JavaScript · Canvas API · PDF.js
+  <br>
+  <a href="LICENSE">MIT License</a>
 </p>
 
 ## Preview
@@ -51,33 +53,6 @@
 
 On supported desktop browsers, the screen eyedropper can also pick a color from another visible window. The interface is available in English, French, and Spanish.
 
-## Run locally
+## How it works
 
-The site is static HTML, CSS, and JavaScript. There is no account, backend, or build step. Python 3 is one convenient way to serve the files locally:
-
-```bash
-python3 -m http.server 8000 --directory dist
-```
-
-Open [http://localhost:8000](http://localhost:8000) and choose **Try an example** to explore the app. Any static file server can serve `dist/`.
-
-## Project layout
-
-| Path | Purpose |
-| --- | --- |
-| `dist/index.html`, `dist/styles.css` | Interface, metadata, and responsive layout |
-| `dist/app.js`, `dist/color-analysis.js` | File handling, pixel analysis, palettes, and exports |
-| `dist/selection-geometry.mjs` | Touch selection placement, moving, and resizing |
-| `dist/i18n.js` | English, French, and Spanish interface text |
-| `dist/pdf.min.mjs`, `dist/pdf.worker.min.mjs` | Local PDF rendering |
-| `dist/heic-to.js` | Local HEIC/HEIF fallback decoder |
-| `dist/fonts/` | Bundled typefaces and their licenses |
-| `docs/` | README artwork and screenshots |
-
-## Browser notes
-
-The screen eyedropper requires browser support and a secure context, so it appears only on compatible desktop browsers. Files are limited to 25 MB. Exact image colors are counted from decoded pixels, even when the preview is scaled. PDF colors are counted from rendered pages, so the render resolution affects the result.
-
-Bundled library and font license notices are included beside their assets in `dist/`.
-
-**Planned domain:** `wuucolors.com`
+Your image is decoded, or a PDF page is rendered, in the browser. wuuColors counts the resulting pixels by exact HEX value and groups them into dominant and accent colors. You can then inspect one pixel or a selected area and export the results. Your file stays on your device.
