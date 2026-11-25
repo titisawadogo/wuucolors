@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <strong>Website</strong> · <code>wuucolors.com</code> (planned)
+  <strong>Website</strong> · <a href="https://wuucolors.app">wuucolors.app</a>
   <br>
   <strong>Built with</strong> · HTML · CSS · JavaScript · Canvas API · PDF.js
   <br>
