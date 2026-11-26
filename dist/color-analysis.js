@@ -1,9 +1,9 @@
 const COLOR_COUNT = 0x1000000;
 const BIN_COUNT = 0x8000;
 
-export function createColorAnalysis() {
+export function createColorAnalysis({sparseExact = false} = {}) {
   return {
-    exact: new Uint32Array(COLOR_COUNT),
+    exact: sparseExact ? {pages: new Map(), keys: null} : new Uint32Array(COLOR_COUNT),
     bins: new Uint32Array(BIN_COUNT),
     red: new Float64Array(BIN_COUNT),
     green: new Float64Array(BIN_COUNT),
@@ -17,11 +17,20 @@ export function createColorAnalysis() {
 export function addColorTile(analysis, data) {
   const local = new Uint16Array(BIN_COUNT);
   const touched = [];
+  if (analysis.exact.pages) analysis.exact.keys = null;
   for (let i = 0; i < data.length; i += 4) {
     if (data[i + 3] === 0) continue;
     const r = data[i], g = data[i + 1], b = data[i + 2];
     const exact = (r << 16) | (g << 8) | b;
-    if (analysis.exact[exact]++ === 0) analysis.unique++;
+    if (analysis.exact.pages) {
+      const pageId = exact >>> 12;
+      let page = analysis.exact.pages.get(pageId);
+      if (!page) {
+        page = new Uint32Array(4096);
+        analysis.exact.pages.set(pageId, page);
+      }
+      if (page[exact & 4095]++ === 0) analysis.unique++;
+    } else if (analysis.exact[exact]++ === 0) analysis.unique++;
     const bin = ((r >> 3) << 10) | ((g >> 3) << 5) | (b >> 3);
     if (local[bin]++ === 0) touched.push(bin);
     analysis.bins[bin]++;
@@ -44,7 +53,7 @@ function distance(a, b) {
   return Math.hypot(a.r - b.r, a.g - b.g, a.b - b.b);
 }
 
-export function buildFullPalettes(analysis) {
+export function buildFullPalettes(analysis, {minAccentTile = 4} = {}) {
   if (!analysis.total) return {dominant: [], accents: []};
   const occupied = [];
   for (let bin = 0; bin < BIN_COUNT; bin++) if (analysis.bins[bin]) occupied.push(bin);
@@ -87,7 +96,7 @@ export function buildFullPalettes(analysis) {
   const anchors = dominant.filter(color => color.share >= 0.1).slice(0, 3);
   if (!anchors.length) anchors.push(...dominant.slice(0, 3));
   const represented = dominant.filter(color => color.share >= 0.02);
-  const candidates = occupied.filter(bin => analysis.maxTile[bin] >= 4 && analysis.bins[bin] / analysis.total <= 0.05)
+  const candidates = occupied.filter(bin => analysis.maxTile[bin] >= minAccentTile && analysis.bins[bin] / analysis.total <= 0.05)
     .map(bin => {
       const color = colorOf(analysis, bin);
       const contrast = Math.min(...anchors.map(anchor => distance(color, anchor)));
@@ -113,10 +122,12 @@ export function buildFullPalettes(analysis) {
 
 export function exactColorPage(analysis, start, prefix, limit = 40) {
   const rows = [];
-  for (let cursor = start; cursor < COLOR_COUNT; cursor++) {
-    const count = analysis.exact[cursor];
+  const keys = sparseKeys(analysis);
+  for (let cursor = start; cursor < (keys ? keys.length : COLOR_COUNT); cursor++) {
+    const colorValue = keys ? keys[cursor] : cursor;
+    const count = exactPixelCount(analysis, colorValue);
     if (!count) continue;
-    const color = cursor.toString(16).padStart(6, '0').toUpperCase();
+    const color = colorValue.toString(16).padStart(6, '0').toUpperCase();
     if (prefix && !color.startsWith(prefix)) continue;
     if (rows.length === limit) return {rows, next: cursor};
     rows.push({color: `#${color}`, count});
@@ -126,9 +137,29 @@ export function exactColorPage(analysis, start, prefix, limit = 40) {
 
 export function exactCsvChunks(analysis, start, end) {
   const rows = [];
-  for (let color = start; color < end; color++) {
-    const count = analysis.exact[color];
+  const keys = sparseKeys(analysis);
+  for (let cursor = start; cursor < Math.min(end, keys ? keys.length : COLOR_COUNT); cursor++) {
+    const color = keys ? keys[cursor] : cursor;
+    const count = exactPixelCount(analysis, color);
     if (count) rows.push(`#${color.toString(16).padStart(6, '0').toUpperCase()},${count},${(count / analysis.total * 100).toFixed(6)}\n`);
   }
   return rows.join('');
+}
+
+export function exactPixelCount(analysis, color) {
+  if (!analysis.exact.pages) return analysis.exact[color];
+  return analysis.exact.pages.get(color >>> 12)?.[color & 4095] || 0;
+}
+
+function sparseKeys(analysis) {
+  const exact = analysis.exact;
+  if (!exact.pages) return null;
+  if (exact.keys) return exact.keys;
+  const keys = [];
+  for (const pageId of [...exact.pages.keys()].sort((a, b) => a - b)) {
+    const page = exact.pages.get(pageId);
+    for (let i = 0; i < page.length; i++) if (page[i]) keys.push((pageId << 12) | i);
+  }
+  exact.keys = keys;
+  return keys;
 }
